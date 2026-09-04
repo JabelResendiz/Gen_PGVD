@@ -1,1 +1,5 @@
-*.ipynb linguist-vendored
+# Ocultar notebooks dentro de producer/
+producer/**/*.ipynb linguist-vendored
+
+# O si solo quieres ocultar los de la raíz de producer/
+producer/*.ipynb linguist-vendored
