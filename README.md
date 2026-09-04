@@ -1,83 +1,83 @@
 # 🧬 PGVD - Genomic Data Processing with Apache Spark & Kafka
 
-**Proyecto Académico de Procesamiento de Datos Genómicos en Tiempo Real usando Apache Spark, Kafka y HDFS**
+**Academic Project for Real-Time Genomic Data Processing using Apache Spark, Kafka, and HDFS**
 
-## 📋 Descripción del Proyecto
+## 📋 Project Description
 
-PGVD es una plataforma de **procesamiento distribuido en tiempo real** de datos genómicos usando:
+PGVD is a platform for **real-time distributed processing** of genomic data using:
 
-- **Apache Spark**: Procesamiento distribuido de datos genéticos
-- **Apache Kafka**: Ingesta en tiempo real de datos desde productores
-- **HDFS**: Almacenamiento distribuido de datasets
-- **Flask Dashboard**: Visualización avanzada con métricas de streaming genético
-- **Docker Compose**: Orquestación completa de servicios
+- **Apache Spark**: Distributed processing of genetic data
+- **Apache Kafka**: Real-time data ingestion from producers
+- **HDFS**: Distributed dataset storage
+- **Flask Dashboard**: Advanced visualization with genetic streaming metrics
+- **Docker Compose**: Complete service orchestration
 
-### Características Principales
+### Key Features
 
-✅ **Procesamiento de Datos Genómicos**
-- Análisis de familias (Padre, Madre, Hijos)
-- Detección de variantes genéticas
-- Cálculo de orientación genética (Dominante/Recesivo/Heterocigoto)
+✅ **Genomic Data Processing**
+- Family analysis (Father, Mother, Children)
+- Genetic variant detection
+- Genetic orientation calculation (Dominant/Recessive/Heterozygous)
 
-✅ **Streaming en Tiempo Real**
-- Ingesta desde Kafka
-- Ventanas de tiempo para análisis
-- Detección de anomalías genéticas
+✅ **Real-Time Streaming**
+- Kafka ingestion
+- Time windows for analysis
+- Genetic anomaly detection
 
-✅ **Métricas Avanzadas**
-- Tasa de mutación en tiempo real
-- Distribución de genotipos
-- Top genes y variantes detectados
-- Diversidad genética
-- Tendencias de mutaciones
+✅ **Advanced Metrics**
+- Real-time mutation rate
+- Genotype distribution
+- Top genes and detected variants
+- Genetic diversity
+- Mutation trends
 
-✅ **Monitoreo del Cluster**
-- Métricas de Spark (Masters, Workers, Jobs)
-- Estado de HDFS (DataNodes, Storage)
-- Rendimiento de Executors
+✅ **Cluster Monitoring**
+- Spark metrics (Masters, Workers, Jobs)
+- HDFS status (DataNodes, Storage)
+- Executor performance
 
 ---
 
-## 🏗️ Arquitectura del Proyecto
+## 🏗️ Project Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                     PRODUCER (producer/)                     │
-│  - family_generator.py: Genera familias genéticas           │
-│  - producer.py: Envía datos a Kafka                         │
-│  - streaming_manager.py: Gestiona el flujo                  │
+│  - family_generator.py: Generates genetic families          │
+│  - producer.py: Sends data to Kafka                         │
+│  - streaming_manager.py: Manages data flow                  │
 └────────────────┬────────────────────────────────────────────┘
                  │ [KAFKA TOPICS]
 ┌────────────────▼────────────────────────────────────────────┐
 │                  CONSUMER (cosumer/)                         │
-│  - spark_consumer.py: Consume desde Kafka                   │
-│  - Procesa datos genómicos en Spark                         │
-│  - Almacena en HDFS                                         │
-│  - Envía métricas al Dashboard                              │
+│  - spark_consumer.py: Consumes from Kafka                   │
+│  - Processes genomic data in Spark                          │
+│  - Stores in HDFS                                           │
+│  - Sends metrics to Dashboard                               │
 └────────────────┬────────────────────────────────────────────┘
                  │ [REST API]
 ┌────────────────▼────────────────────────────────────────────┐
 │           DASHBOARD (cosumer/dashboard/)                     │
-│  - dashboard_advanced.py: Backend Flask                     │
-│  - dashboard.js: Gráficos interactivos                      │
-│  - index.html: UI moderna                                   │
-│  - Visualización de métricas en tiempo real                 │
+│  - dashboard_advanced.py: Flask Backend                     │
+│  - dashboard.js: Interactive Charts                         │
+│  - index.html: Modern UI                                    │
+│  - Real-time Metrics Visualization                          │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🚀 Guía de Inicio Rápido
+## 🚀 Quick Start Guide
 
-### Requisitos Previos
+### Prerequisites
 
-- **Docker** y **Docker Compose** instalados
-- Mínimo **8GB RAM** para el cluster Spark
-- Datos genómicos en `producer/data/archive-2/` (5 archivos CSV)
+- **Docker** and **Docker Compose** installed
+- Minimum **8GB RAM** for Spark cluster
+- Genomic data in `producer/data/archive-2/` (5 CSV files)
 
-### 1️⃣ Preparar Datos
+### 1️⃣ Prepare Data
 
-Coloca los archivos genómicos en `producer/data/archive-2/`:
+Place genomic files in `producer/data/archive-2/`:
 ```
 producer/data/archive-2/
 ├── Father Genome.csv
@@ -89,34 +89,34 @@ producer/data/archive-2/
 
 **Dataset**: [Family Genome Dataset - Kaggle](https://www.kaggle.com/datasets/zusmani/family-genome-dataset)
 
-### 2️⃣ Desplegar con Docker
+### 2️⃣ Deploy with Docker
 
 ```bash
 git clone https://github.com/ALbertE03/PGVD.git
 
 ```bash
-# Iniciar todos los servicios
+# Start all services
 ./start.sh
 
-# Monitorear logs en tiempo real
+# Monitor logs in real-time
 docker-compose logs -f
 
-# Ver estado de servicios
+# View service status
 docker-compose ps
 ```
 
-### 3️⃣ Acceder al Dashboard
+### 3️⃣ Access Dashboard
 
 ```
 http://localhost:5000
 ```
 
-**Navegación del Dashboard:**
-- 🖥️ **Cluster Metrics**: Estado de Spark, HDFS y Jobs
-- 🧬 **Genetic Streaming**: Métricas avanzadas de datos genómicos
-- 📊 **Data Analysis**: Estadísticas de procesamiento
+**Dashboard Navigation:**
+- 🖥️ **Cluster Metrics**: Spark, HDFS, and Jobs status
+- 🧬 **Genetic Streaming**: Advanced genomic data metrics
+- 📊 **Data Analysis**: Processing statistics
 
-### 4️⃣ Detener Servicios
+### 4️⃣ Stop Services
 
 ```bash
 ./stop.sh
@@ -124,94 +124,93 @@ http://localhost:5000
 
 ---
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
 ```
 PGVD/
-├── README.md                          # Este archivo
-├── start.sh                           # Script de inicio
-├── stop.sh                            # Script de parada
+├── README.md                          # This file
+├── start.sh                           # Startup script
+├── stop.sh                            # Shutdown script
 │
-├── producer/                          # Ingesta de datos
-│   ├── producer.py                    # Envía datos a Kafka
-│   ├── family_generator.py            # Generador de datos genómicos
-│   ├── streaming_manager.py           # Gestor de flujos
-│   ├── config.py                      # Configuración
-│   ├── requirements.txt               # Dependencias Python
-│   ├── Dockerfile                     # Imagen Docker
-│   ├── docker-compose.yml             # Orquestación
+├── producer/                          # Data ingestion
+│   ├── producer.py                    # Sends data to Kafka
+│   ├── family_generator.py            # Genomic data generator
+│   ├── streaming_manager.py           # Flow manager
+│   ├── config.py                      # Configuration
+│   ├── requirements.txt               # Python dependencies
+│   ├── Dockerfile                     # Docker image
+│   ├── docker-compose.yml             # Orchestration
 │   └── data/
-│       └── archive-2/                 # Datos genómicos (CSV)
+│       └── archive-2/                 # Genomic data (CSV)
 │
-├── cosumer/                           # Procesamiento y dashboard
-│   ├── spark_consumer.py              # Consumer Spark
-│   ├── requirements.txt               # Dependencias Python
-│   ├── requirements_dashboard.txt     # Deps del dashboard
-│   ├── entrypoint.sh                  # Script de inicio
-│   ├── docker-compose.yml             # Orquestación
-│   ├── dockerfile                     # Imagen base
+├── cosumer/                           # Processing and dashboard
+│   ├── spark_consumer.py              # Spark Consumer
+│   ├── requirements.txt               # Python dependencies
+│   ├── requirements_dashboard.txt     # Dashboard dependencies
+│   ├── entrypoint.sh                  # Startup script
+│   ├── docker-compose.yml             # Orchestration
+│   ├── dockerfile                     # Base image
 │   ├── Dockerfile.driver              # Spark Driver
 │   ├── Dockerfile.master              # Spark Master
 │   ├── Dockerfile.worker              # Spark Worker
 │   ├── Dockerfile.dashboard           # Dashboard Flask
-│   ├── driver-entrypoint.sh           # Inicio del driver
-│   ├── worker-entrypoint.sh           # Inicio del worker
+│   ├── driver-entrypoint.sh           # Driver startup
+│   ├── worker-entrypoint.sh           # Worker startup
 │   │
 │   ├── dashboard/
-│   │   ├── dashboard_advanced.py      # Backend Flask (NEW)
+│   │   ├── dashboard_advanced.py      # Flask Backend (NEW)
 │   │   ├── static/
-│   │   │   └── dashboard.js           # Gráficos avanzados (UPDATED)
+│   │   │   └── dashboard.js           # Advanced Charts (UPDATED)
 │   │   └── templates/
-│   │       └── index.html             # UI moderna (UPDATED)
+│   │       └── index.html             # Modern UI (UPDATED)
 │   │
 │   └── models/
 │       ├── __init__.py
-│       └── data_models.py             # Modelos de datos
+│       └── data_models.py             # Data models
 │
 ├── informe/
-│   └── informe_pgvd.tex               # Documentación académica
+│   └── informe_pgvd.tex               # Academic documentation
 │
-└── photos/                            # Capturas de pantalla
+└── photos/                            # Screenshots
 ```
 
 ---
 
-## 🛠️ Scripts de Control
+## 🛠️ Control Scripts
 
-### `start.sh` - Inicia todos los servicios
+### `start.sh` - Starts all services
 
 ```bash
 ./start.sh
 ```
 
-**Qué hace:**
-1. Construye imágenes Docker
-2. Inicia Producer (Kafka, Zookeeper)
-3. Inicia Consumer (Spark, HDFS, Dashboard)
-4. Inicia generador de datos
-5. Monitorea logs en tiempo real
+**What it does:**
+1. Builds Docker images
+2. Starts Producer (Kafka, Zookeeper)
+3. Starts Consumer (Spark, HDFS, Dashboard)
+4. Starts data generator
+5. Monitors logs in real-time
 
-### `stop.sh` - Detiene todos los servicios
+### `stop.sh` - Stops all services
 
 ```bash
 ./stop.sh
 ```
 
-**Qué hace:**
-1. Detiene y elimina contenedores
-2. Elimina volúmenes (opcional)
-3. Limpia recursos de Docker
+**What it does:**
+1. Stops and removes containers
+2. Removes volumes (optional)
+3. Cleans up Docker resources
 
 ---
 
-## 🔌 Servicios y Puertos
+## 🔌 Services and Ports
 
-### Producer (Puerto 9092)
+### Producer (Port 9092)
 - **Kafka Broker**: `kafka:9092`
 - **Zookeeper**: `zookeeper:2181`
-- **Jupyter/Generador**: `http://localhost:8888`
 
-### Consumer - Cluster Spark
+### Consumer - Spark Cluster
 - **Spark Master**: `http://spark-master-1:8080`
 - **Spark Worker 1**: `http://spark-worker-1:8081`
 - **Spark Worker 2**: `http://spark-worker-2:8082`
@@ -226,232 +225,228 @@ PGVD/
 
 ### Dashboard
 - **Flask Dashboard**: `http://localhost:5000`
-- **API REST**: `http://localhost:5000/api/*`
+- **REST API**: `http://localhost:5000/api/*`
 
 ---
 
-## 📊 Endpoints de API
+## 📊 API Endpoints
 
-### Métricas de Procesamiento
+### Processing Metrics
 ```
-GET /api/stats                    # Conteo de familias procesadas
-GET /api/cluster_stats            # Estado del cluster Spark/HDFS
-GET /api/processing_history       # Historial de procesamiento
-GET /api/task_times               # Tiempos de tareas completadas
-```
-
-### Métricas Genéticas (NUEVAS ✨)
-```
-GET /api/genetic_metrics          # Métricas de streaming genético
-GET /api/genetic_trends           # Tendencias de mutaciones
-POST /api/genetic_alert           # Detectar anomalías genéticas
+GET /api/stats                    # Count of processed families
+GET /api/cluster_stats            # Spark/HDFS cluster status
+GET /api/processing_history       # Processing history
+GET /api/task_times               # Task completion times
 ```
 
-### Métricas de Spark
+### Genetic Metrics (NEW ✨)
 ```
-GET /api/spark_jobs               # Jobs y executors activos
+GET /api/genetic_analysis         # Genetic streaming metrics and analysis
+GET /api/families                 # List of processed families
+```
+
+### Spark Metrics
+```
+GET /api/spark_jobs               # Active jobs and executors
 ```
 
 ---
 
-## 📝 Cómo Funciona el Streaming Genético
+## 📝 How Genetic Streaming Works
 
-### 1. Producer envía datos a Kafka
+### 1. Producer sends data to Kafka
 
 ```python
 # producer.py
+# Sends family data with SNP information
 kafka_message = {
-    "member_type": "fathers",
-    "total_records": 100,
-    "genetic_data": {
-        "variant_type": "SNP",
-        "gene": "BRCA1",
-        "genotype": "0/1",
-        "chromosome": 17,
+    "family_id": "FAM_ABC123",
+    "member_type": "father",
+    "person_id": "FAM_ABC123_F",
+    "gender": "Male",
+    "total_snps": 500,
+    "snp_data": {
+        "chromosome": "17",
         "position": 41196312,
-        "quality": 99.0
+        "genotype": "0/1"
     }
 }
 ```
 
-### 2. Consumer recibe y procesa
+### 2. Consumer receives and processes
 
 ```python
 # spark_consumer.py
-# 1. Consume mensajes de Kafka
-# 2. Analiza datos genéticos
-# 3. Calcula métricas en ventanas de tiempo
-# 4. Envía a Dashboard vía API REST
+# 1. Consumes messages from Kafka
+# 2. Analyzes genomic data
+# 3. Calculates metrics in time windows
+# 4. Sends metrics to Dashboard via REST API
+# 5. Stores data in HDFS (Parquet format)
 ```
 
-### 3. Dashboard muestra en tiempo real
+### 3. Dashboard displays in real-time
 
-- **Tasa de Mutación**: Mutaciones por segundo en ventana de 60s
-- **Distribución de Genotipos**: Dominante/Recesivo/Heterocigoto
-- **Top Genes**: 5 genes más frecuentes
-- **Top Variantes**: 5 variantes más comunes
-- **Anomalías**: Desviaciones de tasa esperada
+- **Mutation Rate**: Variants per second in 60s window
+- **Genotype Distribution**: Dominant/Recessive/Heterozygous
+- **Top Genes**: 5 most frequent genes
+- **Top Variants**: 5 most common variants
+- **Anomalies**: Deviations from expected rate
 
 ---
 
-## 🔍 Métricas Avanzadas Explicadas
+## 🔍 Advanced Metrics Explained
 
-### 1️⃣ Tasa de Mutación
-**Fórmula**: Número de variantes genéticas / segundos en ventana
+### 1️⃣ Mutation Rate
+**Formula**: Number of genetic variants / seconds in window
 
 ```
-Ventana: 60 segundos
-Si se reciben 45 variantes en 60s → Tasa = 0.75 variantes/seg
+Window: 60 seconds
+If 45 variants received in 60s → Rate = 0.75 variants/sec
 ```
 
-### 2️⃣ Orientación Genética
+### 2️⃣ Genetic Orientation
 
-| Genotipo | Orientación | Descripción |
+| Genotype | Orientation | Description |
 |----------|-------------|------------|
-| 0/0 | Recesivo | Dos alelos recesivos |
-| 0/1 | Heterocigoto | Un alelo de cada tipo |
-| 1/1 | Dominante | Dos alelos dominantes |
+| 0/0 | Recessive | Two recessive alleles |
+| 0/1 | Heterozygous | One allele of each type |
+| 1/1 | Dominant | Two dominant alleles |
 
-### 3️⃣ Detección de Anomalías
-
-```
-Anomalía detectada si:
-|Tasa actual - Tasa esperada| > 2.5σ (desviaciones estándar)
-```
-
-### 4️⃣ Diversidad Genética
+### 3️⃣ Anomaly Detection
 
 ```
-Diversidad = Número de genes únicos / Total de variantes
-Rango: 0-1 (1 = máxima diversidad)
+Anomaly detected if:
+|Current Rate - Expected Rate| > 2.5σ (standard deviations)
+```
+
+### 4️⃣ Genetic Diversity
+
+```
+Diversity = Number of unique genes / Total variants
+Range: 0-1 (1 = maximum diversity)
 ```
 
 ---
 
 ## 🐛 Troubleshooting
 
-### ❌ "Connection refused" en Kafka
+### ❌ "Connection refused" on Kafka
 
 ```bash
-# Verificar que Kafka está corriendo
+# Verify Kafka is running
 docker-compose -f producer/docker-compose.yml ps
 
-# Reiniciar
+# Restart
 docker-compose -f producer/docker-compose.yml restart kafka zookeeper
 ```
 
 ### ❌ "No space left on device"
 
 ```bash
-# Limpiar imágenes y volúmenes
+# Clean images and volumes
 docker system prune -a --volumes
 ./start.sh
 ```
 
-### ❌ Dashboard no carga gráficos
+### ❌ Dashboard not loading charts
 
 ```bash
-# Verificar que Flask está corriendo
+# Verify Flask is running
 docker-compose -f cosumer/docker-compose.yml ps
 
-# Ver logs
+# View logs
 docker-compose -f cosumer/docker-compose.yml logs dashboard
 ```
 
-### ❌ Spark sin workers conectados
+### ❌ Spark without connected workers
 
 ```bash
-# Reiniciar cluster Spark
+# Restart Spark cluster
 docker-compose -f cosumer/docker-compose.yml restart spark-master-1
 docker-compose -f cosumer/docker-compose.yml restart spark-worker-1 spark-worker-2 spark-worker-3
 ```
 
 ---
 
-## 📈 Ejemplos de Consultas
+## 📈 Query Examples
 
-### Obtener todas las métricas genéticas
+### Get all genetic analysis data
 
 ```bash
-curl http://localhost:5000/api/genetic_metrics
+curl http://localhost:5000/api/genetic_analysis
 ```
 
-**Respuesta:**
+**Response:**
 ```json
 {
-  "window_size": 156,
-  "mutation_rate": 0.0234,
-  "mutation_rate_percent": 2.34,
-  "genotype_distribution": {
-    "dominant": 42,
-    "recessive": 35,
-    "heterozygous": 79
+  "genetic_data": {
+    "fathers": [...],
+    "mothers": [...],
+    "children": [...]
   },
-  "top_genes": [
-    {"gene": "BRCA1", "count": 23},
-    {"gene": "TP53", "count": 18}
-  ],
-  "anomaly_count": 0
+  "genetic_metrics": {
+    "mutation_rate_history": [0.023, 0.025, ...],
+    "variant_types": {"SNP": 156},
+    "gene_frequency": {
+      "BRCA1": 23,
+      "TP53": 18
+    },
+    "genotype_distribution": {
+      "dominant": 42,
+      "recessive": 35,
+      "heterozygous": 79
+    }
+  }
 }
 ```
 
-### Obtener tendencias
+### Get list of processed families
 
 ```bash
-curl http://localhost:5000/api/genetic_trends
+curl http://localhost:5000/api/families
 ```
 
-**Respuesta:**
+**Response:**
 ```json
 {
-  "current_mutation_rate": 0.0234,
-  "rate_change_percent": 5.2,
-  "trend_direction": "up",
-  "genotype_percentages": {
-    "dominant": 26.92,
-    "recessive": 22.44,
-    "heterozygous": 50.64
-  },
-  "genetic_diversity": 0.45,
-  "anomaly_rate": 0.0
+  "families": ["FAM_ABC123", "FAM_DEF456", ...],
+  "total": 42
 }
 ```
 
-### Detectar anomalía
+### Get cluster status
 
 ```bash
-curl -X POST http://localhost:5000/api/genetic_alert \
-  -H "Content-Type: application/json" \
-  -d '{"anomaly_threshold": 2.5}'
+curl http://localhost:5000/api/cluster_stats
 ```
 
 ---
 
-## 🎯 Justificación del Uso de Streaming
+## 🎯 Justification for Using Streaming
 
-✅ **¿Por qué Apache Kafka?**
-- Ingesta de datos genómicos en tiempo real (no batch)
-- Tolerancia a fallos con replicación
-- Escalabilidad horizontal
+✅ **Why Apache Kafka?**
+- Real-time ingestion of genomic data (not batch processing)
+- Fault tolerance with replication
+- Horizontal scalability
 
-✅ **¿Por qué Apache Spark?**
-- Procesamiento distribuido de ventanas de tiempo
-- Cálculo eficiente de agregaciones
-- Integración con HDFS y Kafka
+✅ **Why Apache Spark?**
+- Distributed processing of time windows
+- Efficient aggregation calculation
+- Integration with HDFS and Kafka
 
-✅ **¿Por qué HDFS?**
-- Almacenamiento distribuido de datasets genómicos
-- Alta disponibilidad (replicación 3x)
-- Acceso paralelo desde Spark
+✅ **Why HDFS?**
+- Distributed storage of genomic datasets
+- High availability (3x replication)
+- Parallel access from Spark
 
-✅ **¿Por qué Dashboard en tiempo real?**
-- Monitoreo instantáneo de tasa de mutación
-- Detección de anomalías genéticas
-- Análisis de tendencias en directo
+✅ **Why Real-Time Dashboard?**
+- Instant monitoring of mutation rate
+- Detection of genetic anomalies
+- Real-time analysis of trends
 
 ---
 
-## 📚 Referencias
+## 📚 References
 
 - [Apache Spark Documentation](https://spark.apache.org/docs/)
 - [Apache Kafka Documentation](https://kafka.apache.org/documentation/)
